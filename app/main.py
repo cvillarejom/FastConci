@@ -1,11 +1,11 @@
 from fastapi import FastAPI
+from app.core.config import get_settings
+from app.api.api_router import api_router
 
-app = FastAPI(title="FastConci")
 
-@app.get("/health")
-def health():
-    return {"status":"ok"}
+settings = get_settings()
 
-@app.get("/version")
-def version():
-    return {"name":"FastConci", "current_version": 0.1}
+
+app = FastAPI(title=settings.app_name)
+
+app.include_router(api_router, prefix="/api")
