@@ -31,6 +31,7 @@ async def uploadfile(file: UploadFile = File(...)):
     finally:
         file.file.close()
     
+    # TODO: Return current for testing, should be removed and handled by business logic later
     return{
         "original_filename": file.filename,
         "storage_filename": storage_filename,

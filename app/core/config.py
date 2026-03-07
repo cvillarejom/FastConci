@@ -7,8 +7,8 @@ class Settings(BaseSettings):
         env_ignore_empty=True,
         extra="ignore"
     )
-
     app_name: str = "Fast-Api"
+    database_url: str
 
 
 
