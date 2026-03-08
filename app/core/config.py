@@ -9,6 +9,10 @@ class Settings(BaseSettings):
     )
     app_name: str = "Fast-Api"
     database_url: str
+    database_port: int
+    database_name: str
+    database_user: str
+    database_password: str
 
 
 
