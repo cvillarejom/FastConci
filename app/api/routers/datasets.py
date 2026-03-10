@@ -30,7 +30,7 @@ async def uploadfile(file: UploadFile = File(...)):
             shutil.copyfileobj(file.file, buffer)
     finally:
         file.file.close()
-    
+        
     # TODO: Return current for testing, should be removed and handled by business logic later
     return{
         "original_filename": file.filename,

@@ -2,6 +2,8 @@ from sqlalchemy import create_engine, URL
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 from app.core.config import get_settings
 
+
+
 settings = get_settings()
 
 DATABASE_URL = URL.create(
