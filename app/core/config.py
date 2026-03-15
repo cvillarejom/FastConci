@@ -7,8 +7,16 @@ class Settings(BaseSettings):
         env_ignore_empty=True,
         extra="ignore"
     )
-
+    
+    
     app_name: str = "Fast-Api"
+    
+    #DB configs
+    database_url: str
+    database_port: int
+    database_name: str
+    database_user: str
+    database_password: str
 
 
 
