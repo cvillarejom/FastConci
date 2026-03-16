@@ -35,7 +35,7 @@ class BaseEntity(Base):
     updated_by: Mapped[Optional[int]] = mapped_column(
         BigInteger,
         nullable=True,
-        default="1"
+        default=1 #admin/root user id
     )
 
     active: Mapped[bool] = mapped_column(
