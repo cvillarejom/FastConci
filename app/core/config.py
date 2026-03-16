@@ -8,7 +8,22 @@ class Settings(BaseSettings):
         extra="ignore"
     )
 
+    env: str
     app_name: str = "Fast-Api"
+    debug: bool
+    version: int
+
+    database_url: str
+    database_user= str
+    database_password = str
+    database_name = str
+
+    secret_key: str
+    algorithm:str
+    access_token_expire_in_minutes: int
+
+
+    allowed_origins: str
 
 
 
