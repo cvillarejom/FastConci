@@ -14,14 +14,15 @@ class UserRepository:
         stmt = select(User).where(User.username == username)
         return self.db.execute(stmt).scalar_one_or_none()
 
-    def create(self, *, email: str, username: str, hashed_password: str) -> User:
+    def create(self, *, email: str, username: str, hashedPassword: str) -> User:
         user = User(
             email=email,
             username=username,
-            hashed_password=hashed_password,
+            hashedPassword=hashedPassword,
             is_active=True,
         )
         self.db.add(user)
         self.db.commit()
         self.db.refresh(user)
         return user
+    
