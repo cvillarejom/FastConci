@@ -9,7 +9,7 @@ class UserService:
     def __init__ (self, userRepository: UserRepository):
         self.userRepository = userRepository
     
-    def registerUser(self, data: UserRegisterDTO) -> User:
+    def register_user(self, data: UserRegisterDTO) -> User:
 
         #Check existing
         existingEmail = self.userRepository.get_by_email(data.email)
