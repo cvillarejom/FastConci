@@ -4,4 +4,4 @@ sqlalchemy
 psycopg[binary]
 passlib[bcrypt]==1.7.4
 bcrypt==3.2.2
-PyJWT==2.12.1g
+PyJWT==2.12.1
