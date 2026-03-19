@@ -4,11 +4,8 @@ from datetime import datetime
 from typing import Optional
 
 from sqlalchemy import BigInteger, Boolean, DateTime, func
-from sqlalchemy.orm import Mapped, mapped_column, DeclarativeBase
-
-class Base(DeclarativeBase):
-    pass
-
+from sqlalchemy.orm import Mapped, mapped_column
+from app.core.db import Base
 
 class BaseEntity(Base):
     __abstract__ = True
@@ -34,9 +31,11 @@ class BaseEntity(Base):
         onupdate=func.now(),
     )
 
+    #TODO: Review sys as creator strategy
     updated_by: Mapped[Optional[int]] = mapped_column(
         BigInteger,
         nullable=True,
+        default=1 #admin/root user id
     )
 
     active: Mapped[bool] = mapped_column(
