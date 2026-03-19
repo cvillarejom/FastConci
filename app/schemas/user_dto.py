@@ -4,7 +4,7 @@ from app.models.user import RoleUser
 
 class UserRegisterDTO(BaseModel):
     email: EmailStr
-    username: str = Field(min_length=10, max_length=60)
+    name: str = Field(min_length=10, max_length=60)
     password: str = Field(min_length=10, max_length=30)
 
 
@@ -17,12 +17,12 @@ class UserResponseDTO(BaseModel):
 
     id: int
     email: EmailStr
-    username: str
+    name: str
     active: bool
     role: RoleUser
     date_created: datetime
 
 
 class TokenDTO(BaseModel):
-    token: str
+    access_token: str
     token_type: str = "bearer"

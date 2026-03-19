@@ -1,11 +1,11 @@
 from fastapi import HTTPException, status
 
 from app.core.security import hash_password, verify_password, create_access_token
-from app.schemas.userDTO import UserLoginDTO, UserRegisterDTO, UserResponseDTO
-from app.repositories.userRepository import UserRepository
+from app.schemas.user_dto import UserRegisterDTO, UserResponseDTO
+from app.repositories.user_repository import UserRepository
 from app.models.user import User
 
-class UserService:
+class AdminService:
     def __init__ (self, userRepository: UserRepository):
         self.userRepository = userRepository
     
@@ -19,6 +19,9 @@ class UserService:
                 detail="Email already exists"
             )
         
+        print("PASSWORD:", data.password)
+        print("TYPE:", type(data.password))
+        print("LEN:", len(data.password))
         
         #hash password
         hassedPassword = hash_password(data.password)
@@ -26,14 +29,12 @@ class UserService:
         #Create the user
         user = self.userRepository.create(
             email = data.email, 
-            username= data.username,
-            hashedPassword= hassedPassword
+            name= data.name,
+            password_hash= hassedPassword
         )
         
         return user
 
-    def loginUser():
-        pass
-
+    #TODO: add a soft-delete function
     def softDeleteUser():
         pass
