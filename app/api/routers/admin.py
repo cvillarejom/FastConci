@@ -6,7 +6,8 @@ from app.repositories.user_repository import UserRepository
 from app.services.admin_service import AdminService
 from app.schemas.user_dto import UserRegisterDTO, UserResponseDTO
 
-
+from app.models.user import User
+from app.api.dependencies.auth import require_admin
 
 #Main route
 router = APIRouter(prefix="/admin", tags=["admin"])
@@ -21,6 +22,7 @@ def get_admin_service(db: Session = Depends(get_db)) -> AdminService:
 
 @router.post("/register", response_model=UserResponseDTO, status_code=201)
 def register(
+    current_user: User = Depends(require_admin),
     data: UserRegisterDTO,
     auth_service: AdminService = Depends(get_admin_service),
 ):
