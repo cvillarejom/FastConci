@@ -1,7 +1,13 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException
+from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
 from pathlib import Path
+
+from app.models.user import User
+from app.api.dependencies.auth import get_current_user
+
 import shutil
 import uuid
+
+
 
 #Main route
 router = APIRouter(prefix="/datasets", tags=["datasets"])
@@ -13,7 +19,7 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 #Generic File upload endpoint
 @router.post("upload")
-async def uploadfile(file: UploadFile = File(...)):
+async def uploadfile(current_user: User = Depends(get_current_user), file: UploadFile = File(...)):
     
     #Basic validation of a filename
     if not file.filename:

@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 
-from app.core.security import hash_password, verify_password, create_access_token
+from app.core.security import verify_password, create_access_token
 from app.schemas.user_dto import UserLoginDTO
 from app.repositories.user_repository import UserRepository
 from app.models.user import User
@@ -20,4 +20,9 @@ class AuthService:
         if not user.active:
             raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="User not active")
 
-        return create_access_token(data={"sub": str(user.id), "email": user.email})
+        #Returns token (data: id user, email and JWT token)
+        return create_access_token(data={
+            "sub": str(user.id), 
+            "email": user.email,
+            "role": user.role
+            })

@@ -19,7 +19,7 @@ def login(
     auth_service: AuthService = Depends(get_auth_service),
 ):
     token = auth_service.login_user(
-        email=form_data.username,
+        email=form_data.user,
         password=form_data.password,
     )
     return TokenDTO(access_token=token)
