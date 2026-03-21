@@ -22,8 +22,8 @@ def get_admin_service(db: Session = Depends(get_db)) -> AdminService:
 
 @router.post("/register", response_model=UserResponseDTO, status_code=201)
 def register(
-    current_user: User = Depends(require_admin),
     data: UserRegisterDTO,
+    current_user: User = Depends(require_admin),
     auth_service: AdminService = Depends(get_admin_service),
 ):
     user = auth_service.register_user(data)
