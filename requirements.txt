@@ -7,3 +7,7 @@ bcrypt==3.2.2
 PyJWT==2.12.1
 pytest 
 pytest-cov
+httpx
+pydantic-settings
+pydantic[email]
+python-multipart

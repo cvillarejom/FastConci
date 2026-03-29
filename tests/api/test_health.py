@@ -1,10 +1,4 @@
-from fastapi.testclient import TestClient
-from app import main
+def test_health_endpoint(client):
+    response = client.get("/api/utils/health")
 
-client = TestClient(app)
-
-def testHealthEndpoint():
-
-    response = client.get("api/health")
-
-    assert response.status_code == "200"
+    assert response.status_code == 200
