@@ -9,10 +9,6 @@ class UserRepository:
     def get_by_email(self, email: str) -> User | None:
         stmt = select(User).where(User.email == email)
         return self.db.execute(stmt).scalar_one_or_none()
-    
-    def get_by_id(self, user_id: int) -> User | None:
-        stmt = select(User).where(User.id == user_id)
-        return self.db.execute(stmt).scalar_one_or_none()
 
     def create(self, *, email: str, name: str, password_hash: str) -> User:
         user = User(
@@ -21,9 +17,7 @@ class UserRepository:
             password_hash=password_hash,
             active=True,
         )
-        self.db.add(user)
-        self.db.commit()
-        self.db.refresh(user)
-        return user
+
+        return super().create(user)
     
     
